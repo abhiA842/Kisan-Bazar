@@ -1,0 +1,621 @@
+/* =========================================
+   KISAN BAZAR — style.css
+   Earthy · Warm · Mobile-First
+   ========================================= */
+
+/* --- RESET & ROOT VARIABLES --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green:       #2d6a4f;
+  --green-light: #40916c;
+  --green-pale:  #d8f3dc;
+  --amber:       #e9c46a;
+  --amber-dark:  #f4a261;
+  --earth:       #6b4226;
+  --cream:       #fefae0;
+  --cream-dark:  #f5f0d8;
+  --text:        #1a1a2e;
+  --text-muted:  #6b7280;
+  --white:       #ffffff;
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:   0 4px 20px rgba(0,0,0,0.12);
+  --radius:      16px;
+  --radius-sm:   10px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- PAGE SYSTEM --- */
+.page {
+  display: none;
+  min-height: 100vh;
+  animation: fadeIn 0.35s ease;
+}
+.page.active {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   HOME PAGE
+   ========================================= */
+#page-home {
+  background: var(--green);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+.sun-circle {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, var(--amber) 0%, rgba(233,196,106,0) 70%);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.home-header {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.tagline {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--green-pale);
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.home-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 20px 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.role-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  padding: 20px 20px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  text-align: left;
+  width: 100%;
+  color: var(--cream);
+  position: relative;
+}
+
+.role-card:active {
+  transform: scale(0.97);
+  background: rgba(255,255,255,0.18);
+}
+
+.farmer-card { border-left: 4px solid var(--amber); }
+.buyer-card  { border-left: 4px solid var(--green-pale); }
+
+.card-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+}
+
+.card-title {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.card-sub {
+  display: block;
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+.card-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.home-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   TOP NAVIGATION
+   ========================================= */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--green);
+  color: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(45,106,79,0.3);
+}
+
+.back-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: var(--cream);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+
+.back-btn:active { background: rgba(255,255,255,0.25); }
+
+.nav-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+/* =========================================
+   PANEL BODY & CARDS
+   ========================================= */
+.panel-body {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--cream);
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+/* =========================================
+   FORM STYLES
+   ========================================= */
+.form-card { border-top: 4px solid var(--amber-dark); }
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus {
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
+  background: var(--white);
+}
+
+.form-group input::placeholder { color: #adb5bd; }
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-group.half { flex: 1; }
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  margin-top: 4px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primary:active {
+  opacity: 0.88;
+  transform: scale(0.98);
+}
+
+.form-msg {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  min-height: 20px;
+  transition: all 0.3s;
+}
+
+.form-msg.success { color: var(--green-light); }
+.form-msg.error   { color: #e63946; }
+
+/* =========================================
+   CROP LISTING CARDS
+   ========================================= */
+.listing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-msg {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+.crop-card {
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  padding: 14px 14px;
+  position: relative;
+  background: var(--cream);
+  transition: border-color 0.2s;
+}
+
+.crop-card:hover, .crop-card:active {
+  border-color: var(--green-light);
+}
+
+.crop-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.crop-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: capitalize;
+}
+
+.crop-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+  background: var(--green-pale);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.crop-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.meta-pill {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--white);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.crop-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--cream-dark);
+}
+
+.farmer-info {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.farmer-info strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.contact-btn {
+  background: var(--amber);
+  color: var(--earth);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+
+.contact-btn:active { background: var(--amber-dark); }
+
+.delete-btn {
+  background: none;
+  border: 1px solid #fca5a5;
+  color: #e63946;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* =========================================
+   SEARCH & FILTER (BUYER)
+   ========================================= */
+.search-card { border-top: 4px solid var(--amber); }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--cream);
+  border: 1.5px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
+}
+
+.search-icon { font-size: 1rem; margin-right: 8px; }
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  padding: 12px 0;
+  outline: none;
+}
+
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.filter-chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: 1.5px solid #e5e7eb;
+  background: var(--white);
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.chip.active {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+
+.listings-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.listings-header .section-heading { margin-bottom: 0; }
+
+/* =========================================
+   MODAL
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: var(--white);
+  border-radius: 24px 24px 0 0;
+  padding: 32px 24px 40px;
+  width: 100%;
+  text-align: center;
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: var(--cream-dark);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.modal-icon { font-size: 2.5rem; margin-bottom: 8px; }
+
+.modal-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.modal-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.call-btn {
+  background: linear-gradient(135deg, #27ae60, var(--green-light));
+  font-size: 1.05rem;
+  padding: 15px;
+  border-radius: 14px;
+  letter-spacing: 0.3px;
+}
+
+.modal-note {
+  margin-top: 14px;
+  font-size: 0.75rem;
+  color: #adb5bd;
+}
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+@media (max-width: 360px) {
+  .logo { font-size: 2rem; }
+  .card { padding: 16px 14px; }
+}

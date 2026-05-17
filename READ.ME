@@ -1,0 +1,27 @@
+# Kisan Bazar — Frontend
+
+## File Structure
+```
+frontend/
+├── index.html        ← Single entry point (open this in browser)
+├── css/
+│   └── style.css     ← All styles (mobile-first, earthy theme)
+└── js/
+    └── app.js        ← All logic (navigation, CRUD, search, modal)
+```
+
+## How to Test on Mobile
+1. Open `index.html` directly in your mobile browser (Chrome/Firefox).
+2. All data is saved to **localStorage** — no backend needed yet.
+3. Later, replace `localStorage` calls in `app.js` with `fetch()` API calls.
+
+## Pages
+- **Home** — Role selection (Farmer / Buyer)
+- **Farmer Panel** — Add crop listings, view & delete own listings
+- **Buyer Panel** — Browse all crops, search, filter by category, contact farmer
+
+## Backend Integration (Later)
+When your Flask/Node backend is ready:
+- `addCrop()` → POST `/api/crops`
+- `renderFarmerListings()` → GET `/api/crops`
+- `deleteCrop(id)` → DELETE `/api/crops/:id`
